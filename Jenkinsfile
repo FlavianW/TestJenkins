@@ -8,7 +8,7 @@ pipeline {
             steps {
                 script {
                     // Connexion SSH et clonage du dépôt Git avec mot de passe en clair
-                    bat 'plink -ssh root@localhost -pw AZER -P 42 "rm -rf /var/www/html/* && git clone https://github.com/FlavianW/TestJenkins.git /var/www/html/"'
+                    bat 'putty -ssh localhost -l root -pw AZER -P 42 "rm -rf /var/www/html/* && git clone https://github.com/FlavianW/TestJenkins.git /var/www/html/"'
                 }
             }
         }
