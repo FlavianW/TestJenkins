@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    options {
+        timeout(time: 1, unit: 'MINUTES') // Cela définira un timeout global pour le pipeline
+    }
     stages {
         stage('Clone Git Repository') {
             steps {
