@@ -1,14 +1,17 @@
 pipeline {
     agent any
     options {
-        timeout(time: 1, unit: 'MINUTES') // Cela définira un timeout global pour le pipeline
+        timeout(time: 1, unit: 'MINUTES') // Timeout global pour le pipeline
     }
     stages {
         stage('Clone Git Repository') {
             steps {
                 script {
-                    // Connexion SSH et clonage du dépôt Git avec mot de passe en clair
-                    bat 'plink -ssh root@127.0.0.1 -pw AZER -P 42 "rm -rf /var/www/* && mkdir /var/www/html && git clone https://github.com/FlavianW/TestJenkins.git /var/www/html/"'
+                    // Utiliser l'étape sshagent avec l'ID des credentials SSH
+                    sshagent(credentials: ['id-ssh-credential']) {
+                        // Exécuter la commande SSH via sh
+                        sh 'ssh -o StrictHostKeyChecking=no root@127.0.0.1 -p 42 "rm -rf /var/www/* && mkdir /var/www/html && git clone https://github.com/FlavianW/TestJenkins.git /var/www/html/"'
+                    }
                 }
             }
         }
