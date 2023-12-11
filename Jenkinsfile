@@ -9,7 +9,7 @@ pipeline {
                 script {
                     // Connexion SSH et clonage du dépôt Git avec mot de passe
                     // Remplacez les informations de connexion par les vôtres
-                    bat 'plink -ssh root@127.0.0.1 -pw "votreMotDePasse" -P 42 "rm -rf /var/www/* && mkdir /var/www/html && git clone https://github.com/FlavianW/TestJenkins.git /var/www/html/"'
+                    bat 'ssh -ssh root@127.0.0.1 -pw "AZER" -P 42 "rm -rf /var/www/* && mkdir /var/www/html && git clone https://github.com/FlavianW/TestJenkins.git /var/www/html/"'
                 }
             }
         }
